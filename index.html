@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flourite Cheats - Portal</title>
+    
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script ="https://accounts.google.com/gsi/client" async defer></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            background-color: #06150a; 
+            background-image: url('background.gif'); 
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #ffffff; 
+            display: flex; justify-content: center; align-items: center; flex-direction: column;
+            min-height: 100vh; font-family: 'Outfit', sans-serif;
+            position: relative; overflow-x: hidden; padding: 20px; 
+        }
+
+        body::before {
+            content: ''; position: absolute; width: 100vw; height: 100vh;
+            background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.08) 0%, transparent 60%);
+            top: 0; left: 0; z-index: 0; pointer-events: none;
+        }
+
+        /* Universal Animated Glow System for Portal */
+        .glow-container {
+            position: relative; padding: 2px; border-radius: 24px; overflow: hidden; 
+            background: rgba(255,255,255,0.05); box-shadow: 0 15px 40px rgba(0,0,0,0.7); 
+            width: 100%; max-width: 440px; z-index: 1; margin: 0 auto;
+        }
+        .glow-container::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; 
+            background: conic-gradient(from 0deg, transparent 70%, #00ff73 100%); 
+            animation: spin-glow 3.5s linear infinite; z-index: 0;
+        }
+        @keyframes spin-glow { 100% { transform: rotate(360deg); } }
+        
+        .glow-inner {
+            background: rgba(6, 28, 14, 0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); 
+            border-radius: 22px; height: 100%; width: 100%; position: relative; z-index: 1; 
+            padding: 45px 35px; display: flex; flex-direction: column;
+        }
+
+        .header { text-align: center; margin-bottom: 35px; }
+        .logo-img { width: 100%; max-width: 220px; height: auto; margin: 0 auto 20px auto; display: block; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); }
+        .welcome-text { font-size: 24px; font-weight: 500; color: #ffffff; letter-spacing: 0.5px; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+
+        .view { display: none; }
+        .view.active { display: block; animation: floatIn 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        @keyframes floatIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .input-group { margin-bottom: 22px; text-align: left; }
+        .input-group label { display: block; font-size: 13.5px; font-weight: 400; margin-bottom: 8px; color: #caf0f8; letter-spacing: 0.5px; }
+
+        .input-field { 
+            width: 100%; padding: 15px 16px; 
+            border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 12px; 
+            font-size: 16px; background: rgba(0, 0, 0, 0.25); color: #ffffff; 
+            outline: none; transition: all 0.3s ease; font-family: 'Outfit', sans-serif;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+        }
+        /* Neon Green Focus Glow for Inputs */
+        .input-field:focus { 
+            border-color: #00ff73; background: rgba(0, 0, 0, 0.6);
+            box-shadow: 0 0 15px rgba(0, 255, 115, 0.2), inset 0 2px 5px rgba(0,0,0,0.4);
+        }
+        .input-field::placeholder { color: rgba(255, 255, 255, 0.4); font-weight: 300;}
+        
+        .otp-group { display: flex; gap: 12px; }
+        .otp-group .input-field { margin-bottom: 0; flex: 1; }
+        
+        .btn-otp { 
+            background: rgba(255, 255, 255, 0.1); color: #ffffff; padding: 0 20px; 
+            border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.25); cursor: pointer; 
+            font-weight: 500; font-size: 13px; transition: all 0.2s ease; white-space: nowrap; font-family: 'Outfit', sans-serif;
+        }
+        .btn-otp:hover { background: rgba(0, 255, 115, 0.15); border-color: #00ff73; color: #00ff73; box-shadow: 0 0 10px rgba(0, 255, 115, 0.3); }
+        .btn-otp:active { background: rgba(0, 255, 115, 0.3); border-color: #00cc5c; }
+        
+        .btn { 
+            width: 100%; padding: 16px; border: none; border-radius: 12px; font-size: 16px; font-weight: 600; 
+            letter-spacing: 0.5px; cursor: pointer; transition: all 0.3s ease; margin-bottom: 18px; 
+            display: flex; justify-content: center; align-items: center; font-family: 'Outfit', sans-serif;
+        }
+        
+        /* Neon Green Button Glow */
+        .btn-primary { background: #ffffff; color: #0e4b09; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); }
+        .btn-primary:hover { background: #00ff73; color: #06150a; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0, 255, 115, 0.4); }
+        .btn-primary:active { background: #00cc5c; transform: translateY(0); box-shadow: 0 4px 15px rgba(0, 255, 115, 0.3); }
+        
+        .google-btn-container { display: flex; justify-content: center; margin-bottom: 15px; width: 100%; border-radius: 12px; }
+        .link-container { text-align: center; margin-top: 25px; font-size: 14px; color: #caf0f8;}
+        .link-text { color: #ffffff; text-decoration: none; font-weight: 500; cursor: pointer; transition: color 0.2s; }
+        .link-text:hover { color: #00ff73; text-decoration: underline; text-shadow: 0 0 8px rgba(0, 255, 115, 0.4); }
+        
+        .forgot-pass { display: block; text-align: right; font-size: 13px; color: #caf0f8; text-decoration: none; margin-top: -10px; margin-bottom: 25px; transition: color 0.2s; font-weight: 400; }
+        .forgot-pass:hover { color: #00ff73; text-decoration: underline; }
+        .footer { text-align: center; margin-top: 25px; font-size: 13px; color: rgba(255, 255, 255, 0.5); font-weight: 300; position: relative; z-index: 1;}
+        
+        /* reCAPTCHA Responsive Fixes */
+        .recaptcha-container { display: flex; justify-content: center; width: 100%; margin-bottom: 25px; overflow: hidden; }
+
+        @media screen and (max-width: 480px) {
+            .glow-inner { padding: 35px 20px; }
+            .header { margin-bottom: 25px; }
+            .logo-img { max-width: 180px; }
+            .welcome-text { font-size: 20px; }
+            .input-field { padding: 13px 14px; font-size: 16px; } /* Kept at 16px to prevent auto-zoom on iOS */
+            .btn { padding: 14px; font-size: 15px; }
+            .btn-otp { padding: 0 15px; font-size: 12px; }
+        }
+        
+        /* Scale reCAPTCHA progressively based on screen width */
+        @media screen and (max-width: 400px) {
+            .g-recaptcha { transform: scale(0.85); transform-origin: center; }
+        }
+        @media screen and (max-width: 350px) {
+            .g-recaptcha { transform: scale(0.75); transform-origin: center; }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="glow-container">
+        <div class="glow-inner">
+            <div class="header">
+                <img src="logo.png" alt="Flourite Cheats Logo" class="logo-img">
+                <div id="dynamic-greeting" class="welcome-text">Welcome Back</div>
+            </div>
+
+            <div id="login-view" class="view active">
+                <form onsubmit="handleForm(event, 'Login')">
+                    <div class="input-group">
+                        <label>Email address</label>
+                        <input type="text" id="login-username" class="input-field" placeholder="example@gmail.com" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Password</label>
+                        <input type="password" class="input-field" placeholder="••••••••••••" required>
+                    </div>
+
+                    <a href="#" class="forgot-pass" onclick="switchView('forgot-view')">Forgot Password?</a>
+                    
+                    <div class="recaptcha-container">
+                        <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" data-theme="dark"></div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Sign In</button>
+                    
+                    <div id="g_id_onload"
+                         data-client_id="YOUR_GOOGLE_CLIENT_ID_HERE"
+                         data-context="signin"
+                         data-ux_mode="popup"
+                         data-callback="handleGoogleLoginResponse"
+                         data-auto_prompt="false">
+                    </div>
+                    <div class="google-btn-container">
+                        <div class="g_id_signin"
+                             data-type="standard"
+                             data-shape="rectangular"
+                             data-theme="outline" 
+                             data-text="signin_with"
+                             data-size="large"
+                             data-logo_alignment="center"
+                             data-width="280">
+                        </div>
+                    </div>
+                </form>
+                <div class="link-container">
+                    New member? <a class="link-text" onclick="switchView('signup-view')">Create an account</a>
+                </div>
+            </div>
+
+            <div id="signup-view" class="view">
+                <form onsubmit="handleForm(event, 'Account Creation')">
+                    <div class="input-group">
+                        <label>Username</label>
+                        <input type="text" class="input-field" placeholder="Choose a username" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Email address</label>
+                        <input type="email" class="input-field" id="signup-email" placeholder="example@gmail.com" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Security Verification</label>
+                        <div class="otp-group">
+                            <input type="text" class="input-field" placeholder="Enter 6-digit code" required>
+                            <button type="button" class="btn-otp" onclick="sendOTP()">Get Code</button>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Password</label>
+                        <input type="password" class="input-field" placeholder="Create a password" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Create Account</button>
+                </form>
+                <div class="link-container">
+                    Already have an account? <a class="link-text" onclick="switchView('login-view')">Sign in</a>
+                </div>
+            </div>
+
+            <div id="forgot-view" class="view">
+                <form onsubmit="handleForm(event, 'Password Reset Link')">
+                    <p style="font-size: 14px; color: #caf0f8; margin-bottom: 25px; text-align: center; font-weight: 300; line-height: 1.5;">Enter your registered email address below to receive secure reset instructions.</p>
+                    
+                    <div class="input-group">
+                        <label>Registered Email</label>
+                        <input type="email" class="input-field" placeholder="example@gmail.com" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Send Reset Link</button>
+                </form>
+                <div class="link-container">
+                    <a class="link-text" onclick="switchView('login-view')">Return to Sign in</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">© 2026 Flourite Cheats. All rights reserved.</div>
+
+    <script>
+        function switchView(targetId) {
+            document.querySelectorAll('.view').forEach(view => view.classList.remove('active'));
+            document.getElementById(targetId).classList.add('active');
+            
+            const greeting = document.getElementById('dynamic-greeting');
+            if(targetId === 'login-view') greeting.innerText = 'Welcome Back';
+            else if(targetId === 'signup-view') greeting.innerText = 'Create Account';
+            else if(targetId === 'forgot-view') greeting.innerText = 'Recover Account';
+
+            // Reset reCAPTCHA on view switch if it exists
+            if(targetId === 'login-view' && typeof grecaptcha !== 'undefined') {
+                try { grecaptcha.reset(); } catch(e) { console.log("reCAPTCHA not loaded yet."); }
+            }
+        }
+
+        function handleForm(event, actionName) {
+            event.preventDefault(); 
+            
+            if(actionName === 'Login') {
+                // reCAPTCHA Validation (Currently bypassed if not configured)
+                const recaptchaResponse = typeof grecaptcha !== 'undefined' && grecaptcha.getResponse ? grecaptcha.getResponse() : "bypass";
+                if(recaptchaResponse.length === 0) {
+                    alert("Please complete the reCAPTCHA verification.");
+                    return; 
+                }
+                
+                const usernameInput = document.getElementById('login-username').value;
+                localStorage.setItem("flourite_username", usernameInput);
+                
+                // Admin routing check
+                let authorizedAdmins = JSON.parse(localStorage.getItem('flourite_db_admins')) || ["Flourite_Owner"];
+                
+                if (authorizedAdmins.includes(usernameInput)) {
+                    localStorage.setItem("flourite_admin_access", "true");
+                    window.location.href = "admin.html"; 
+                } else {
+                    localStorage.setItem("flourite_admin_access", "false");
+                    window.location.href = "dashboard.html"; 
+                }
+            } else {
+                alert(actionName + ' successful!');
+                switchView('login-view');
+            }
+        }
+
+        function handleGoogleLoginResponse(response) {
+            console.log("Encoded JWT ID token: " + response.credential);
+            alert("Google Authentication Successful! Routing to dashboard...");
+            
+            localStorage.setItem("flourite_username", "Google User");
+            localStorage.setItem("flourite_admin_access", "false");
+            window.location.href = "dashboard.html"; 
+        }
+
+        function sendOTP() {
+            const emailInput = document.getElementById('signup-email').value;
+            if(!emailInput) { alert("Please enter your email address first."); return; }
+            alert(`Notice: To actually send an email to ${emailInput}, you must connect this script to an email server/backend API.`);
+        }
+    </script>
+</body>
+</html>
